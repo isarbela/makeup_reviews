@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }} | MakeUpReview {% endblock %}
+
+{% block content %}
+
+<h1>{{ product.name }}</h1>
+<ul class="product-info">
+    <li>
+        <img src="{{ product.image.url }}" alt="Product image" style="max-width: 200px;">
+    </li>
+    <li>
+        <img src="{{ product.brand.image.url }}" alt="Brand image" style="max-width: 100px;"></p>
+    </li>
+    <li><strong>Marca:</strong> {{ product.brand.name }}</li>
+    <li><strong>Variação:</strong> {{ product.variation}}</li>
+    <li><strong>Categoria:</strong> {{ product.category }}</li>
+    <li><strong>Nota da Comunidade (1 a 5):</strong> {{ average_rating |default:"Não há avaliações" }}</li>
+</ul>
+
+<p><a class="btn-review" href="{% url 'add_review' product.pk %}">Adicionar Review</a></p>
+
+<ul class="review-info">
+    <h2>Reviews</h2>
+    {% for review in reviews %}
+    <li class="review">
+        <ul class="review-item">
+            <li><b>Nota: </b> {{ review.rating }}/5</li>
+            <li>
+                <b>Review: </b> {{ review.comment }}
+            </li>
+            <li class="author-date">{{ review.posted_on }} por {{ review.user }}</li>
+        </ul>
+    </li>
+    {% empty %}
+    <p>Não há reviews para esse produto.</p>
+    {% endfor %}
+
+</ul>
+{% endblock %}

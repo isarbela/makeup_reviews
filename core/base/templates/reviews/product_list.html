@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %} Todos os Produtos | MakeUpReview {% endblock %}
+
+{% block content %}
+<div class="lastest-section">
+    <h1>Todos os Produtos</h1>
+    <ul class="cards">
+    {% for product in products %}
+    <li>
+    {% include 'reviews/product_card.html'%}
+    </li>
+    {% empty %}
+    <p>Não há produtos cadastrados</p>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}

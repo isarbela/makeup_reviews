@@ -1,0 +1,7 @@
+<a class="card" href="{% url 'product_detail' product.pk %}">
+<div class="product-item">
+        <img src="{{ product.image.url }}" alt="Imagem do Produto {{ product.name }}" style="max-width: 100px;">
+        <p class="product-item-brand">{{ product.brand }}</p>
+        <p class="product-item-name">{{ product.name }} {{ product.variation }}</p>
+</div>
+</a>
