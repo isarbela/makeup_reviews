@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Página Inicial | MakeUpReviews {% endblock %}
+
+{% block content %}
+
+<div class="hero-section">
+{% include 'search_bar.html' %}
+</div>
+<div class="lastest-section">
+    <h2>Novos produtos</h2>
+    <ul class="cards">
+        {% for product in latest_products %}
+        <li>
+            {% include 'reviews/product_card.html' %}
+        </li>
+        {% empty %}
+        <p>Não há produtos cadastrados</p>
+        {% endfor %}
+    </ul>
+</div>
+<div class="toprated-section">
+    <h2>Top 10 Melhor Avaliados</h2>
+    <ul class="cards">
+        {% for product in top_rated %}
+        <li>
+            {% include 'reviews/product_card.html' %}
+        </li>
+        {% empty %}
+        <p>Não há produtos cadastrados</p>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

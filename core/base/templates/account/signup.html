@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+          <div class="login-container">
+            <h2>Cadastre-se</h2>
+            <form class="login-form" method="post" action="{% url 'signup' %}" class="needs-validation" novalidate>
+              {% csrf_token %}
+              {% for field in form %}
+                <div class="mb-3">
+                  {{ field.label_tag }}
+                  {{ field }}
+                  {% if field.help_text %}
+                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                  {% endif %}
+                  <div class="invalid-feedback">
+                    {{ field.errors.as_text }}
+                  </div>
+                </div>
+              {% endfor %}
+              <div class="margin-btn">
+              <button type="submit" class="btn-primary">Cadastrar</button>
+            </div>
+            </form>
+          </div>
+{% endblock %}

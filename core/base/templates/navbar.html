@@ -1,0 +1,46 @@
+<nav class="navbar">
+    <input type="checkbox" id="check" />
+      <label for="check" class="menu">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="30"
+          height="30"
+          fill="currentColor"
+          class="bi bi-list"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+          />
+        </svg>
+      </label>
+    <a class="logo" href="/">MakeUpReview</a>
+    <div class="menu-items">
+        <ul class="overview">
+            <li class="menu-item">
+                <a href="/">Início</a>
+            </li>
+            <li class="menu-item">
+                <a href="{% url 'product_list' %}">Produtos</a>
+            </li>
+            <li class="menu-item">
+                <a href="{% url 'about_us' %}">Sobre Nós</a>
+            </li>
+        </ul>
+        <ul class="account">
+            {% if user.is_authenticated %}
+            <li><a class="btn-profile" href="{% url 'profile' %}">{{ user.username }}</a></li>
+            <li>
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button class="btn-primary" type="submit">Sair</button>
+                </form>
+            </li>
+            {% else %}
+            <li><a class="btn-outline-primary" href="{% url 'login' %}">Entrar</a></li>
+            <li><a class="btn-primary" href="{% url 'signup' %}">Registrar</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>

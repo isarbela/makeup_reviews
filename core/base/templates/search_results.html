@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %} Resultados da Busca | MakeUpReview {% endblock %}
+
+{% block content %}
+<div class="hero-section-discrete">
+{% include 'search_bar.html' %}
+</div>
+<div class="lastest-section">
+    <h1>Todos os Produtos</h1>
+    <ul class="cards">
+    {% for product in products %}
+    <li>
+    {% include 'reviews/product_card.html'%}
+    </li>
+    {% empty %}
+    <p>Não há resultado para busca.</p>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}
